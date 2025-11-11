@@ -17,7 +17,7 @@ class Config(object):
     SQL_USER_NAME = os.environ.get("SQL_USER_NAME") or "ENTER_SQL_SERVER_USERNAME"
     SQL_PASSWORD = os.environ.get("SQL_PASSWORD") or "ENTER_SQL_SERVER_PASSWORD"
     # Below URI may need some adjustments for driver version, based on your OS, if running locally
-    SQLALCHEMY_DATABASE_URI = f"mssql+pyodbc://{SQL_USER_NAME}:{SQL_PASSWORD}@{SQL_SERVER}/{SQL_DATABASE}?driver=ODBC+Driver+17+for+SQL+Server&connection_timeout=30&command_timeout=30&encrypt=yes&trustservercertificate=no"
+    SQLALCHEMY_DATABASE_URI = f"mssql+pyodbc://{SQL_USER_NAME}%40{SQL_SERVER.split('.')[0]}:{SQL_PASSWORD}@{SQL_SERVER}:1433/{SQL_DATABASE}?driver=ODBC+Driver+17+for+SQL+Server&encrypt=yes&trustservercertificate=no&connection_timeout=30"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     ### Info for MS Authentication ###
