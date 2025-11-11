@@ -21,6 +21,19 @@ imageSourceUrl = (
     + "/"
 )
 
+@app.route("/health")
+def health_check():
+    return "Application is running successfully!"
+
+@app.route("/test-db")
+def test_db():
+    try:
+        # Test database connection
+        users = User.query.all()
+        return f"Database connection successful! Found {len(users)} users."
+    except Exception as e:
+        return f"Database connection failed: {str(e)}"
+
 
 @app.route("/")
 @app.route("/home")
